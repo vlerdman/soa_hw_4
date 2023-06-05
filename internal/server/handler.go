@@ -79,10 +79,12 @@ func NewRouter(tasksDB tasks.TasksDB, usersDB users.UsersDB, publisher *queue.Ta
 
 		if err != nil || len(users) == 0 {
 			http.Error(w, "Incorrect body provided: check and fill all fields", http.StatusBadRequest)
+			return
 		}
 
 		if users[0].Password != userBody.Password {
 			http.Error(w, "Incorrect password", http.StatusBadRequest)
+			return
 		}
 
 		resp := RegistrationResponce{users[0].Id, auth.GetToken(users[0].Id)}
@@ -152,6 +154,7 @@ func NewRouter(tasksDB tasks.TasksDB, usersDB users.UsersDB, publisher *queue.Ta
 			user, err := usersDB.GetById(claims.UserId)
 
 			if err != nil {
+				log.Printf("DB executing error: %s", err)
 				http.Error(w, "DB executing error", http.StatusInternalServerError)
 				return
 			}
@@ -165,6 +168,7 @@ func NewRouter(tasksDB tasks.TasksDB, usersDB users.UsersDB, publisher *queue.Ta
 		if err != nil {
 			log.Printf("DB executing error: %s", err)
 			http.Error(w, "DB executing error", http.StatusInternalServerError)
+			return
 		}
 
 		for _, user := range users {
