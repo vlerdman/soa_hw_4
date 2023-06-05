@@ -26,8 +26,6 @@ services:
     ports:
       - '5672:5672'
       - '15672:15672'
-    volumes:
-      - 'rabbitmq-data:/bitnami'
 
   server:
     build:
@@ -57,7 +55,6 @@ services:
 
 volumes:
   postgres-data:
-  rabbitmq-data:
 
 networks:
   dev-network:
