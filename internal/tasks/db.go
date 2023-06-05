@@ -38,7 +38,7 @@ func (t *SQLTasksDB) GetById(id uuid.UUID) (*Task, error) {
 
 func (t *SQLTasksDB) Update(task *Task) error {
 	_, err := t.db.NamedExec(`UPDATE tasks
-									SET result = :result,
+									SET result = :result
 									WHERE id = :id`, task)
 	return err
 }

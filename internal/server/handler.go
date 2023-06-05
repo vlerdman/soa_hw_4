@@ -213,7 +213,7 @@ func NewRouter(tasksDB tasks.TasksDB, usersDB users.UsersDB, publisher *queue.Ta
 		}
 
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(&CreateStatsTaskResponce{user.Id})
+		json.NewEncoder(w).Encode(&CreateStatsTaskResponce{task.Id})
 
 	}).Methods("POST")
 
@@ -229,7 +229,7 @@ func NewRouter(tasksDB tasks.TasksDB, usersDB users.UsersDB, publisher *queue.Ta
 
 		id, err := uuid.Parse(vars["id"])
 		if err != nil {
-			http.Error(w, "Invalid id is provided", http.StatusInternalServerError)
+			http.Error(w, "Invalid id is provided", http.StatusBadRequest)
 			return
 		}
 

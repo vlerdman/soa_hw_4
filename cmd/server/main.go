@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	db, err := sqlx.Open("pgx", "host=localhost port=5432 user=user password=userpass dbname=userdb")
+	db, err := sqlx.Open("pgx", "host=postgres port=5432 user=user password=userpass dbname=userdb")
 	if err != nil {
 		log.Fatalf("DB open error: %s", err)
 	}

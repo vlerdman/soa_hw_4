@@ -45,7 +45,7 @@ func processTask(tasksDb tasks.TasksDB, usersDb users.UsersDB, task tasks.Task) 
 		return err
 	}
 
-	avatarStr := fmt.Sprintf("<left>Avatar: <a href=\"%s\">%s</a></left>", user.Avatar)
+	avatarStr := fmt.Sprintf("<left>Avatar: <a href=\"%s\">link</a></left>", user.Avatar)
 	if user.Avatar == "" {
 		avatarStr = fmt.Sprintf("<left>Avatar: </left>", user.Avatar)
 	}
